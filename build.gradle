@@ -1,15 +1,35 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+def javaVersion = JavaVersion.VERSION_17
+
+java{
+    javaToolchains{
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+    }
+}
+mainClassName = 'orangeCastTest'
+
+group 'io-appium-test'
+version '1.0'
+
+task copyFileFromSource(type: Copy) {
+    from "src/main/config.properties"
+    into 'build/libs'
 }
 
-group 'io-appium'
-version '1.0-SNAPSHOT'
+shadowJar
 
-repositories {
-    mavenCentral()
-}
+    repositories {
+        mavenCentral()
+    }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-}
+    dependencies {
+        implementation 'io.appium:java-client:8.0.0'
+        implementation 'org.seleniumhq.selenium:selenium-java:4.1.4'
+    }
+assemble.finalizedBy(copyFileFromSource)
+build.finalizedBy(copyFileFromSource)
