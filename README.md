@@ -1,40 +1,40 @@
 # cast-Test-Orange
-Test, który ma na celu znalezienie listy aktorów w danym filmie za pomocą __Accessibility ID__ kategorii i __nazwy__ filmu.
+Test which is searching for cast member list in given mowie using __Accessibility ID__ of categori and __name__ of the movie.
 
-## Wymagania
-Do działania test wymaga:
-- Appium server,
-- Java Development Kit (JDK) 17,
-- ADB,
-- emulator Androida, bądź fizyczne urządzenie.
+## Requirements
+To run the test you need:
+- [Appium server](https://appium.io/downloads.html) (You can also use NPM),
+- [Java Development Kit (JDK) 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html),
+- [Android SDK](https://developer.android.com/studio/releases/platform-tools),
+- Android device emulator or physical Android device.
 
-## Jak zbudować test
-Należy wejść do folderu testu za pomocą wiersza poleceń i wpisać poniższą komendę:
+## How to build test application
+Enter the project directory and write below command in CLI:
 ```
 gradlew build
 ```
-W folderze build/libs pojawi się plik __cast_test-1.0-all.jar__ testu i plik konfiguracyjny __config.properties__
+In directory build/libs you will see __cast_test-1.0-all.jar__ test app i and config file named __config.properties__
 
-## Jak uruchomić test
-1. Uruchomić serwer Appium
-2. Uruchomić emulator, bądź podłączyć telefon z Androidem ( z włączonym debugowaniem USB)
-3. Wpisać odpowiednią konfigurację w pliku __config.properties__
-4. W wierszu poleceń wpisać:
+## How to run a test
+1. Run Appium Server.
+2. Run Android emulator or connect Android phone with USB debuggin toggled on.
+3. See and change configuration in __config.properties__ file.
+4. In CLI type:
 ```
 java -jar cast_test-1.0-all.jar
 ```
 
-## Konfiguracja testu
-W pliku __config.properties__ można wykonać następujące zmiany:
-- __CATEGORY__ - Należy wpisać Accessibility ID kategorii w której znajduje się szukany przez nas film
-- __MOVIE__ - Należy wpisać nazwę filmu, którego szukamy
-- __URL__ - Należy wpisać adres URL na których serwer Appium nasłuchuje requestów
-- __PLATFORM_VERSION__ - Należy wpisać wersję Anroida (napisaną liczbowo)
-- __DEVICE_NAME__ - Nazwa urządzenia, wymagane, ale jeżeli podane jest UDID to Appium nazwa jest pomijana.
-- __UDID__ - ID urządzenia z komendy adb devices.
-- __APPPACKAGE__ - Nazwa pakietu aplikacji.
-- __APPACTIVITY__ - Nazwa aktywności, która jest pierwsza po uruchomieniu aplikacji
-- __APPWAITACTIVITY__ - Nazwa aktywności na którą czeka skrypt by zacząć testowanie. Można zostawić puste
-- __APPFILEPATH__ - Ścieżka absolutna do pliku APK. Gdy podane i zmienna __FULLRESET__ jest ustawiona na _true_ przy każdym teście, aplikacja jest odinstalowana, kasowane są dane aplikacji i instalowana na nowo
-- __FULLRESET__ - Jeżeli ustawiona jest na _true_ skrypt odinstalowuje, usuwa dane aplikacji i instaluje na nowo przy każdym uruchomieniu skryptu.
+## Test Configuration
+In __config.properties__ you can change below parameters:
+- __CATEGORY__ - It's Accessibility ID of category in which the movie is located.
+- __MOVIE__ - Name of the movie you look for.
+- __URL__ - URL which Appium server is listening on.
+- __PLATFORM_VERSION__ - Android version (as number)
+- __DEVICE_NAME__ - Name of the device. Not use if __UDID__ parameter is used.
+- __UDID__ - ID of device from _adb devices_ command
+- __APPPACKAGE__ - Name of the app's package.
+- __APPACTIVITY__ - Name of first run activity.
+- __APPWAITACTIVITY__ - Name of activity for the test to wait for before doing any of script work.
+- __APPFILEPATH__ - Absolute filepath to the app's apk. When __FULLRESET__ is set to _true_ test will install app before test and uninstall it after.
+- __FULLRESET__ - When set to true will install the app before test and uninstall it after. Need __APPFILEPATH__ for installing purposes.
 
