@@ -60,46 +60,67 @@ public class orangeCastTest {
         // Session initialization
         try {
             appiumDriver = new AppiumDriver(new URL(properties.getProperty("URL")), capabilities);
-        } catch (MalformedURLException | SessionNotCreatedException e) {
-            e.printStackTrace();
+            System.out.println("Connected to Appium Server!");
+        } catch (MalformedURLException e) {
+            System.out.println("The URL isn't correct. Check the settings");
+            System.exit(1);
+
+        } catch (SessionNotCreatedException r){
+            System.out.println("Cannot detect server or device! Aborting test...");
+            System.exit(1);
         }
         // Web driver initialization
         WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(3));
 
         // Check if menu login element is present. If it is click button "Pomiń".
         // If it doesn't exists, go forward, since someone can be already logged in.
-        if(ifExists("menu_login"))
-           appiumDriver.findElement(By.id("menu_login")).click();
+        if(ifExists("menu_login")) {
+            appiumDriver.findElement(By.id("menu_login")).click();
+            System.out.println("Clicked Pomin button.");
+        }
 
         // Chceck if consent element is present. If it is click button "Zaczynamy"
         // If it doesn't exists, go forward, since someone could have given consent.
-        if(ifExists("welcome_btn_start"))
+        if(ifExists("welcome_btn_start")) {
             appiumDriver.findElement(By.id("welcome_btn_start")).click();
-
+            System.out.println("Clicked Zaczynamy button.");
+        }
         // Click button "VOD"
         try {
             appiumDriver.findElement(By.id("main_btn_vod")).click();
+            System.out.println("Clicked VOD button");
         }catch(NoSuchElementException e){
-            System.out.println("Cannot find VOD button. Aborting");
+            System.out.println("Cannot find VOD button. Aborting...");
         }
 
         //Wait till Vod content box will be available
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("vod_tabs")));
 
         //Scroll the Vod category bar till you find a category
-        appiumDriver.findElement(new AppiumBy.ByAndroidUIAutomator(
-                "new UiScrollable(new UiSelector().resourceIdMatches(\".*id/vod_tabs\").scrollable(true)).setAsHorizontalList()" +
-                        ".scrollIntoView(UiSelector().textContains(\""+ category +"\"))"));
-
+        System.out.println("Searching for: " + category);
+        try {
+            appiumDriver.findElement(new AppiumBy.ByAndroidUIAutomator(
+                    "new UiScrollable(new UiSelector().resourceIdMatches(\".*id/vod_tabs\").scrollable(true)).setAsHorizontalList()" +
+                            ".scrollIntoView(UiSelector().textContains(\"" + category + "\"))"));
+        }catch (NoSuchElementException e) {
+            System.out.println("Cannot find the category. Aborting test.");
+            System.exit(1);
+        }
         // Click the category.
+        System.out.println("Found " + category + ". Clicking it now.");
         appiumDriver.findElement(new AppiumBy.ByAccessibilityId(""+ category +"")).click();
-
         // Find the movie in Vod content list.
-        appiumDriver.findElement(new AppiumBy.ByAndroidUIAutomator(
-                "new UiScrollable(new UiSelector().resourceIdMatches(\".*id/vod_tab_content\").scrollable(true))" +
-                        ".scrollIntoView(UiSelector().textContains(\""+ movie +"\"))"));
-
+        System.out.println("Searching for: " + movie);
+        try {
+            appiumDriver.findElement(new AppiumBy.ByAndroidUIAutomator(
+                    "new UiScrollable(new UiSelector().resourceIdMatches(\".*id/vod_tab_content\").scrollable(true))" +
+                            ".scrollIntoView(UiSelector().textContains(\"" + movie + "\"))"));
+        }catch (NoSuchElementException e){
+            System.out.println("Cannot find the movie. Aborting test.");
+            System.exit(1);
+        }
         // Find element with the movie name and click it
+        System.out.println("Found: " + movie + "Clicking it now.");
         List<WebElement> elementsMovies = appiumDriver.findElements(By.id("vod_entry_scalable_name"));
         for (WebElement element : elementsMovies) {
             if (element.getText().equals(movie)) {
@@ -109,10 +130,11 @@ public class orangeCastTest {
         }
 
         // Scroll to the "Obsada" element
+        System.out.println("Searching for obsada element.");
         appiumDriver.findElement(new AppiumBy.ByAndroidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true))" +
                         ".scrollIntoView(UiSelector().resourceIdMatches(\".*id/actor_name\"))"));
-
+        System.out.println("Gathering list of actors");
         // Collect all Actor's names and list it out in console.
            WebElement listActorsMove = appiumDriver.findElement(By.id("vod_details_actors_list"));
            Actions actions = new Actions(appiumDriver);
@@ -140,6 +162,7 @@ public class orangeCastTest {
                 actions.dragAndDropBy(listActorsMove, -500, 0).perform();
         }while(!endOfTheList);
 
+        System.out.println("Test concluded. Exiting the app.");
         //End the test
         appiumDriver.quit();
 }

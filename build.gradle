@@ -3,25 +3,40 @@ plugins {
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
+group 'io-appium-test'
+version '1.0'
 def javaVersion = JavaVersion.VERSION_17
-
+jar.enabled = false
 java{
     javaToolchains{
         sourceCompatibility = javaVersion
         targetCompatibility = javaVersion
     }
 }
-mainClassName = 'orangeCastTest'
+application {
+    mainClass.set("orangeCastTest")
+}
 
-group 'io-appium-test'
-version '1.0'
+shadowJar{
+    mergeServiceFiles()
+}
+
+task cleanBuild(type:Delete){
+    delete "$rootProject.buildDir/classes"
+    delete "$rootProject.buildDir/distributions"
+    delete "$rootProject.buildDir/generated"
+    delete "$rootProject.buildDir/scripts"
+    delete "$rootProject.buildDir/scriptsShadow"
+    delete "$rootProject.buildDir/tmp"
+}
+
+
 
 task copyFileFromSource(type: Copy) {
     from "src/main/config.properties"
     into 'build/libs'
 }
 
-shadowJar
 
     repositories {
         mavenCentral()
@@ -31,5 +46,8 @@ shadowJar
         implementation 'io.appium:java-client:8.0.0'
         implementation 'org.seleniumhq.selenium:selenium-java:4.1.4'
     }
+
 assemble.finalizedBy(copyFileFromSource)
+assemble.finalizedBy(cleanBuild)
 build.finalizedBy(copyFileFromSource)
+build.finalizedBy(cleanBuild)
