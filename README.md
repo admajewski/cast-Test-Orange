@@ -12,7 +12,11 @@ To run the test you need:
 ## How to build test application
 Enter the project directory and write below command in CLI:
 ```
+#Windows
 gradlew build
+#Ubuntu
+{path to directory}/gradlew build
+
 ```
 In directory build/libs you will see __cast_test-1.0-all.jar__ test app i and config file named __config.properties__
 
