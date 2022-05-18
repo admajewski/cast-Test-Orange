@@ -3,6 +3,7 @@ Test which is searching for cast member list in given mowie using __Accessibilit
 
 ## Requirements
 To run the test you need:
+- [Node.js](https://nodejs.org/en/download/) 
 - [Appium server](https://appium.io/downloads.html) (You can also use NPM),
 - [Java Development Kit (JDK) 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html),
 - [Android SDK](https://developer.android.com/studio/releases/platform-tools),
