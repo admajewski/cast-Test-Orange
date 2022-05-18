@@ -24,7 +24,7 @@ W folderze build/libs pojawi się plik __cast_test-1.0-all.jar__ testu i plik ko
 java -jar cast_test-1.0-all.jar
 ```
 
-##Konfiguracja testu
+## Konfiguracja testu
 W pliku __config.properties__ można wykonać następujące zmiany:
 - CATEGORY
 Należy wpisać Accessibility ID kategorii w której znajduje się szukany przez nas film
