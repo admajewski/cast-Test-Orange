@@ -103,12 +103,17 @@ public class orangeCastTest {
                     "new UiScrollable(new UiSelector().resourceIdMatches(\".*id/vod_tabs\").scrollable(true)).setAsHorizontalList()" +
                             ".scrollIntoView(UiSelector().textContains(\"" + category + "\"))"));
         }catch (NoSuchElementException e) {
-            System.out.println("Cannot find the category. Aborting test.");
+            System.out.println("Cannot find the category: "+ category +". Aborting test.");
             System.exit(1);
         }
         // Click the category.
-        System.out.println("Found " + category + ". Clicking it now.");
-        appiumDriver.findElement(new AppiumBy.ByAccessibilityId(""+ category +"")).click();
+        try {
+            appiumDriver.findElement(new AppiumBy.ByAccessibilityId("" + category + "")).click();
+            System.out.println("Found " + category + ". Clicked it.");
+        }catch(NoSuchElementException e){
+            System.out.println("Cannot find the category: "+ category +". Aborting test.");
+            System.exit(1);
+        }
         // Find the movie in Vod content list.
         System.out.println("Searching for: " + movie);
         try {
@@ -120,7 +125,7 @@ public class orangeCastTest {
             System.exit(1);
         }
         // Find element with the movie name and click it
-        System.out.println("Found: " + movie + "Clicking it now.");
+        System.out.println("Found: " + movie + " Clicking it now.");
         List<WebElement> elementsMovies = appiumDriver.findElements(By.id("vod_entry_scalable_name"));
         for (WebElement element : elementsMovies) {
             if (element.getText().equals(movie)) {
