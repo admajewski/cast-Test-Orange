@@ -22,7 +22,7 @@ gradlew build
 In directory build/libs you will see __cast_test-1.0-all.jar__ test app and config file named __config.properties__
 
 ## How to run a test
-1. Run Appium Server.
+1. Run Appium Server (Default IP in test is 127.0.0.1).
 2. Run Android emulator or connect Android phone with USB debuggin toggled on.
 3. See and change configuration in __config.properties__ file.
 4. In CLI inside the buid/libs write:
