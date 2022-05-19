@@ -5,14 +5,7 @@ plugins {
 }
 group 'io-appium-test'
 version '1.0'
-def javaVersion = JavaVersion.VERSION_17
 jar.enabled = false
-java{
-    javaToolchains{
-        sourceCompatibility = javaVersion
-        targetCompatibility = javaVersion
-    }
-}
 application {
     mainClass.set("orangeCastTest")
 }
