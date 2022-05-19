@@ -8,6 +8,7 @@ To run the test you need:
 - [Java Development Kit (JDK) 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html),
 - [Android SDK](https://developer.android.com/studio/releases/platform-tools),
 - Android device emulator or physical Android device.
+- Set JAVA_HOME, ANDROID_HOME system variables and PATH
 
 ## How to build test application
 Enter the project directory and write below command in CLI:
