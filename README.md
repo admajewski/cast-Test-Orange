@@ -24,7 +24,7 @@ In directory build/libs you will see __cast_test-1.0-all.jar__ test app i and co
 1. Run Appium Server.
 2. Run Android emulator or connect Android phone with USB debuggin toggled on.
 3. See and change configuration in __config.properties__ file.
-4. In CLI type:
+4. In CLI inside the buid/libs type:
 ```
 java -jar cast_test-1.0-all.jar
 ```
