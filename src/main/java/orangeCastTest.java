@@ -66,8 +66,7 @@ public class orangeCastTest {
             System.exit(1);
 
         } catch (SessionNotCreatedException r){
-            System.out.println("Cannot detect server or device! Aborting test...");
-            System.exit(1);
+             r.printStackTrace();
         }
         // Web driver initialization
         WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(3));
