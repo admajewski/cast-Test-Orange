@@ -1,5 +1,5 @@
 # cast-Test-Orange
-Test which is searching for cast member list in given mowie using __Accessibility ID__ of categori and __name__ of the movie.
+Test which is searching for cast member list in given mowie using __Accessibility ID__ of category and __name__ of the movie.
 
 ## Requirements
 To run the test you need:
