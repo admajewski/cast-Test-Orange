@@ -1,10 +1,10 @@
 # cast-Test-Orange
-Test which is searching for cast member list in given mowie using __Accessibility ID__ of category and __name__ of the movie.
+Test which is searching for cast member list and prints it in console from given movie using __Accessibility ID__ of category and __name__ of the movie.
 
 ## Requirements
 To run the test you need:
 - [Node.js](https://nodejs.org/en/download/) 
-- [Appium server](https://appium.io/downloads.html) (You can also use NPM),
+- [Appium server](https://appium.io/downloads.html) (You can also use NPM to install it),
 - [Java Development Kit (JDK) 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html),
 - [Android SDK](https://developer.android.com/studio/releases/platform-tools),
 - Android device emulator or physical Android device.
@@ -19,13 +19,13 @@ gradlew build
 {path to directory}/gradlew build
 
 ```
-In directory build/libs you will see __cast_test-1.0-all.jar__ test app i and config file named __config.properties__
+In directory build/libs you will see __cast_test-1.0-all.jar__ test app and config file named __config.properties__
 
 ## How to run a test
 1. Run Appium Server.
 2. Run Android emulator or connect Android phone with USB debuggin toggled on.
 3. See and change configuration in __config.properties__ file.
-4. In CLI inside the buid/libs type:
+4. In CLI inside the buid/libs write:
 ```
 java -jar cast_test-1.0-all.jar
 ```
